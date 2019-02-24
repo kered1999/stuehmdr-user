@@ -15,6 +15,26 @@ public class Profile {
 
     String email;
 
+    String Password;
+
+    String Username;
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
+    }
+
+    public String getUsername() {
+        return Username;
+    }
+
+    public void setUsername(String username) {
+        Username = username;
+    }
+
     public Long getId() {
         return id;
     }

@@ -25,19 +25,20 @@ public class UserController {
     User.UserBuilder userBuilder;
 
     @PostMapping("/signup")
-    public ResponseEntity<Profile> signUp(@Valid @RequestBody Registration reg) {
+    public ResponseEntity<Profile> signUp(@Valid @RequestBody Profile prof) {
 
 
 
         userDetailsManager.createUser(userBuilder
-                .username(reg.getEmail())
-                .password(reg.getPassword())
-                .roles("AUTHOR")
+                .username(prof.getEmail())
+                .password(prof.getPassword())
+                .roles("BLOGGER")
                 .build());
 
         Profile profile = new Profile();
-        profile.setUsername(reg.getUsername());
-        profile.setName(reg.getName());
+        profile.setEmail(prof.getEmail());
+        profile.setFirstName(prof.getFirstName());
+        profile.setLastName(prof.getLastName());
 
         return new ResponseEntity<>(profileRepository.save(profile), HttpStatus.CREATED);
     }

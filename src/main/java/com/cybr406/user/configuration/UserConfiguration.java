@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
 import javax.sql.DataSource;
 
@@ -27,6 +28,19 @@ public class UserConfiguration implements RepositoryRestConfigurer {
 
     @Autowired
     DataSource dataSource;
+
+    @Bean
+    JdbcUserDetailsManager jdbcUserDetailsManager() {
+        return new JdbcUserDetailsManager(dataSource);
+    }
+
+    @Bean
+    User.UserBuilder userBuilder() {
+        PasswordEncoder passwordEncoder = passwordEncoder();
+        User.UserBuilder users = User.builder();
+        users.passwordEncoder(passwordEncoder::encode);
+        return users;
+    }
 
     @Bean
     PasswordEncoder passwordEncoder() {
