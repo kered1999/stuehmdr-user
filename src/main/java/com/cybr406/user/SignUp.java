@@ -1,13 +1,9 @@
 package com.cybr406.user;
 
-import javax.persistence.*;
+public class SignUp {
+    String username;
 
-@Entity
-public class Profile {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    String password;
 
     String firstName;
 
@@ -15,20 +11,28 @@ public class Profile {
 
     String email;
 
-    public Long getId() {
-        return id;
+    public String getUsername() {
+        return username;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstName(String name) {
+        this.firstName = name;
     }
 
     public String getLastName() {
@@ -46,5 +50,4 @@ public class Profile {
     public void setEmail(String email) {
         this.email = email;
     }
-
 }
