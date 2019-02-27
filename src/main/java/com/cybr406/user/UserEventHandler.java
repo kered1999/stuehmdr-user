@@ -15,13 +15,13 @@ public class UserEventHandler {
     Logger logger = LoggerFactory.getLogger(UserEventHandler.class);
 
     @HandleBeforeSave
-    @PreAuthorize("hasRole('ADMIN') or #profile.username == authentication.principal.username")
+    @PreAuthorize("hasRole('ADMIN') or #profile.email == authentication.principal.username")
     public void handleBeforeSave(Profile profile) {
-        System.out.println("Save an profile");
+        System.out.println("Save a profile");
     }
 
     @HandleAfterCreate
-    public void handleAuthorCreated(Profile profile) {
+    public void handleProfileCreated(Profile profile) {
         logger.info("Profile {} created.", profile.getFirstName());
     }
 }
