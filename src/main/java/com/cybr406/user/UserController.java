@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.Registration;
 import javax.validation.Valid;
 
 @RestController
 public class UserController {
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.setValidator(new SignUpValidator());
