@@ -27,7 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Value("${spring.h2.console.enabled}")
     boolean h2ConsoleEnabled;
 
-    @Override
+
     protected void configure(HttpSecurity http) throws Exception {
 
         // Configure security for the h2 console. This should only ever happen in dev environments.
