@@ -110,6 +110,7 @@ public class Oauth2ServerConfig {
 
         }
 
+
         protected static class Stuff {
 
             @Autowired
