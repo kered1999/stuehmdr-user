@@ -90,10 +90,17 @@ public class Oauth2ServerConfig {
                 clients.inMemory()
 
                         .withClient("api")
-                                .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
-                                .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
-                                .scopes("read", "write", "trust")
-                                .secret(passwordEncoder.encode(""));
+                            .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
+                            .authorities("ROLE_BLOGGER")
+                            .scopes("read", "write", "trust")
+                            .secret(passwordEncoder.encode(""))
+                            .and()
+                        .withClient("post")
+                            .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
+                            .authorities("ROLE_BLOGGER")
+                            .scopes("read", "write", "trust")
+                            .accessTokenValiditySeconds(60)
+                            .secret(passwordEncoder.encode("secret"));
                 // @formatter:on
             }
 
@@ -107,7 +114,10 @@ public class Oauth2ServerConfig {
                 endpoints.tokenStore(tokenStore).authenticationManager(authenticationManager);
             }
 
-
+            @Override
+            public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
+                oauthServer.realm("/oauth/check_token");
+            }
         }
 
 
