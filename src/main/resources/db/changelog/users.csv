@@ -1,0 +1,2 @@
+username,password,enabled
+admin,{bcrypt}$2a$10$q1cmr.0aukhoVB3OrW4dSem3SOiZpQ0OxLVdNiJkDaILasgHKRloG,true

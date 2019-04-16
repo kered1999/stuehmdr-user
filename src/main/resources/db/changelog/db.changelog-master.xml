@@ -22,4 +22,39 @@
         </createTable>
     </changeSet>
 
+    <changeSet author="ryl" id="spring-security-tables">
+        <createTable tableName="users">
+            <column name="username" type="VARCHAR(50)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="password" type="VARCHAR(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enabled" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="authorities">
+            <column name="username" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authority" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint columnNames="username, authority" constraintName="ix_auth_username" tableName="authorities"/>
+        <addForeignKeyConstraint baseTableName="authorities" baseColumnNames="username" referencedTableName="users"
+                                 referencedColumnNames="username" constraintName="fk_authorities_users"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" />
+        <loadData file="db/changelog/users.csv" tableName="users">
+            <column name="username" type="STRING"/>
+            <column name="password" type="STRING"/>
+            <column name="enabled" type="BOOLEAN"/>
+        </loadData>
+        <loadData file="db/changelog/authorities.csv" tableName="authorities">
+            <column name="username" type="STRING"/>
+            <column name="authority" type="STRING"/>
+        </loadData>
+    </changeSet>
+
 </databaseChangeLog>
