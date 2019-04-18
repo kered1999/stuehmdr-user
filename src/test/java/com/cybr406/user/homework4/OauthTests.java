@@ -39,7 +39,8 @@ public class OauthTests extends BaseTest {
     
     return auth;
   }
-  
+
+
   private String testPasswordGrant(String username, String password) throws Exception {
     return mockMvc.perform(post("/oauth/token")
         .header("authorization", authUtil.encodeBasicAuth("api", ""))
