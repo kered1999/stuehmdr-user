@@ -1,2 +1,3 @@
 username,authority
 admin,ROLE_ADMIN
+test,ROLE_BLOGGER
